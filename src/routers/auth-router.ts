@@ -4,6 +4,6 @@ import { Router } from "express";
 const authRouter = Router();
 
 authRouter
-    .get("/", signIn);
+    .post("/", signIn);
 
 export {authRouter};
