@@ -1,3 +1,4 @@
+import { ProductNew } from "protocols";
 import { prisma } from "../../configs";
 
 
@@ -17,16 +18,25 @@ async function getProductById(productId: number){
     })
 }
 
-async function newProduct(){
-    
+async function newProduct(userId: number, productInfo: ProductNew){
+    return await prisma.product.create({
+        data:{
+            userId: userId,
+            ...productInfo
+        }
+    })
 }
 
 async function updateProduct(){
 
 }
 
-async function deleteProduct(){
-
+async function deleteProduct(productId: number){
+    return await prisma.product.delete({
+        where:{
+            id: productId
+        }
+    })
 }
 
 
