@@ -1,5 +1,5 @@
-import { prisma } from "configs";
-import { unauthorizedError } from "errors";
+import { prisma } from "../configs";
+import { unauthorizedError } from "../errors";
 import { NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
 import * as jwt from "jsonwebtoken";
