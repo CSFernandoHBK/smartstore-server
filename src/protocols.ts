@@ -27,3 +27,5 @@ export type OrderEntity = {
 
 export type Order = Omit<OrderEntity, "id">
 
+export type OrderNew = Omit<OrderEntity, "id" | "userId">
+

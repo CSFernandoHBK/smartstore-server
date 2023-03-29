@@ -18,4 +18,7 @@ export const productSchema = joi.object({
     stock: joi.number().required()
 })
 
-export const orderSchema = joi.object({})
+export const orderSchema = joi.object({
+    value: joi.number().required(),
+    date: joi.date().required()
+})
