@@ -22,3 +22,9 @@ export const orderSchema = joi.object({
     value: joi.number().required(),
     date: joi.date().required()
 })
+
+export const adsSchema = joi.object({
+    productId: joi.number().required(),
+    title: joi.string().required(),
+    description: joi.string().required()
+})
