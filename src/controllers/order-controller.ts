@@ -22,8 +22,10 @@ export async function getOrderById(req: AuthenticatedRequest, res: Response){
     const orderId = req.params.orderId;
 
     try{
-        const result: Order = await orderService.getOrderById(userId, Number(orderId));
-        return res.status(200).send(result);
+        const order = await orderService.getOrderById(userId, Number(orderId));
+        const products = await orderService.getProductsbyOrderId(Number(orderId))
+        
+        return res.status(200).send({...order, products});
     } catch(err){
         console.log(err)
         if(err.name==="NotFoundError"){

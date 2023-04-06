@@ -17,6 +17,14 @@ async function getOrderById(orderId: number){
     })
 }
 
+async function getProductsbyOrderId(orderId: number){
+    return prisma.orderProduct.findMany({
+        where:{
+            orderId: orderId
+        }
+    })
+}
+
 async function createOrder(userId: number, orderInfo: OrderNew){
     return await prisma.order.create({
         data:{
@@ -43,6 +51,7 @@ async function deleteOrder(orderId: number){
 const orderRepository = {
     getOrder,
     getOrderById,
+    getProductsbyOrderId,
     createOrder,
     updateOrder,
     deleteOrder

@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import cors from "cors"
-import { authRouter, orderRouter, productRouter, userRouter } from "./routers";
+import { adsRouter, authRouter, orderRouter, productRouter, trackingRouter, userRouter } from "./routers";
 
 const app = express();
 
@@ -12,5 +12,7 @@ app
     .use("/auth", authRouter)
     .use("/product", productRouter)
     .use("/order", orderRouter)
+    .use("/tracking", trackingRouter)
+    .use("/ads", adsRouter)
 
 export default app;

@@ -1,6 +1,7 @@
 import { OrderNew } from "../../protocols";
 import { forbiddenError, notFoundError } from "../../errors";
 import orderRepository from "../../repositories/order-repository";
+import productRepository from "../../repositories/product-repository";
 
 async function getOrder(userId: number){
     const result = await orderRepository.getOrder(userId)
@@ -17,6 +18,12 @@ async function getOrderById(userId: number, orderId: number){
         throw forbiddenError();
     }
     delete result.userId;
+    return result
+}
+
+async function getProductsbyOrderId(orderId: number){
+    const result = await orderRepository.getProductsbyOrderId(orderId)
+    result.forEach((a) => {delete a.orderId});
     return result
 }
 
@@ -46,6 +53,7 @@ async function deleteOrder(userId: number, orderId: number){
 const orderService = {
     getOrder,
     getOrderById,
+    getProductsbyOrderId,
     createOrder,
     updateOrder,
     deleteOrder

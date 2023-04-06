@@ -23,7 +23,7 @@ export async function getProductById(req: AuthenticatedRequest, res: Response){
     const productId = req.params.productId;
 
     try{
-        const result: ProductEntity = await productService.getProductById(userId, Number(productId));
+        const result = await productService.getProductById(userId, Number(productId));
 
         return res.status(200).send(result);
     } catch(err){
