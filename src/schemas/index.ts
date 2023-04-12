@@ -28,3 +28,10 @@ export const adsSchema = joi.object({
     title: joi.string().required(),
     description: joi.string().required()
 })
+
+export const financeSchema = joi.object({
+    value: joi.number().required(),
+    isEntry: joi.boolean().required(),
+    description: joi.string().required(),
+    date: joi.date().required()
+})

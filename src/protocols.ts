@@ -41,4 +41,18 @@ export type Ads = Omit<AdsEntity, "id">
 
 export type AdsNew = Omit<AdsEntity, "id" | "userId">
 
+export type FinanceEntity = {
+    id: number,
+    userId: number,
+    value: number,
+    isEntry: boolean,
+    description: string,
+    date: Date
+}
+
+export type Finance = Omit<FinanceEntity, "id">
+
+export type FinanceNew = Omit<FinanceEntity, "id" | "userId">
+
+
 

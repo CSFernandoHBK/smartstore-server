@@ -23,7 +23,7 @@ async function getOrderById(userId: number, orderId: number){
 
 async function getProductsbyOrderId(orderId: number){
     const result = await orderRepository.getProductsbyOrderId(orderId)
-    result.forEach((a) => {delete a.orderId});
+    result.forEach((a) => {delete a.orderId;delete a.userId});
     return result
 }
 
