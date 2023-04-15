@@ -24,8 +24,6 @@ export async function getOrderById(req: AuthenticatedRequest, res: Response){
     try{
         const order = await orderService.getOrderById(userId, Number(orderId));
         const products = await orderService.getProductsbyOrderId(Number(orderId));
-
-        console.log(products);
         
         return res.status(200).send({...order, products});
     } catch(err){

@@ -29,6 +29,13 @@ export type Order = Omit<OrderEntity, "id">
 
 export type OrderNew = Omit<OrderEntity, "id" | "userId">
 
+export type OrderWithProduct = {
+    id: number,
+    value: number,
+    date: Date,
+    products: ProductNew[]
+}
+
 export type AdsEntity = {
     id: number,
     userId: number,

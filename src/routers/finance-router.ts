@@ -1,4 +1,4 @@
-import { createFinance, getFinance } from "../controllers/finance-controller";
+import { createFinance, getFinance, getOnlySells } from "../controllers/finance-controller";
 import { Router } from "express";
 import { authenticateToken } from "../middlewares";
 
@@ -8,5 +8,6 @@ financeRouter
     .all("/*", authenticateToken)
     .post("/", createFinance)
     .get("/", getFinance)
+    .get("/sells", getOnlySells)
 
 export {financeRouter}

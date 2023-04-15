@@ -4,7 +4,7 @@ import { Router } from "express";
 const trackingRouter = Router();
 
 trackingRouter
-    .get("/", getTracking)
+    .post("/", getTracking)
     .get("/:orderId", getCodeByOrderId)
 
 export {trackingRouter}

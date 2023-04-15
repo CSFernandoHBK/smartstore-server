@@ -29,7 +29,18 @@ export async function getFinance(req: AuthenticatedRequest, res: Response){
 
     try{
         const result = await financeService.getFinance(userId);
+        return res.status(200).send(result)
+    } catch(err){
+        console.log(err);
+        return res.status(500).send(httpStatus["500_MESSAGE"]) 
+    }
+}
 
+export async function getOnlySells(req: AuthenticatedRequest, res: Response){
+    const {userId} = req;
+
+    try{
+        const result = await financeService.getOnlySells(userId);
         return res.status(200).send(result)
     } catch(err){
         console.log(err);

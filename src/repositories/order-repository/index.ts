@@ -18,11 +18,13 @@ async function getOrderById(orderId: number){
 }
 
 async function getProductsbyOrderId(orderId: number){
-    return prisma.orderProduct.findMany({
+    const result = await prisma.orderProduct.findMany({
         where:{
             orderId: orderId
         }
     })
+    result.forEach((a) => {delete a.orderId; delete a.userId; delete a.id});
+    return result;
 }
 
 async function createOrder(userId: number, orderInfo: OrderNew){

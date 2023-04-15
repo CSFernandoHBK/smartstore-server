@@ -1,4 +1,4 @@
-import { OrderNew } from "../../protocols";
+import { OrderNew, ProductNew } from "../../protocols";
 import { forbiddenError, notFoundError } from "../../errors";
 import orderRepository from "../../repositories/order-repository";
 import productRepository from "../../repositories/product-repository";
@@ -21,9 +21,11 @@ async function getOrderById(userId: number, orderId: number){
     return result
 }
 
-async function getProductsbyOrderId(orderId: number){
-    const result = await orderRepository.getProductsbyOrderId(orderId)
-    result.forEach((a) => {delete a.orderId;delete a.userId});
+async function getProductsbyOrderId(orderId: number): Promise<ProductNew[]>{
+    const result: any = await orderRepository.getProductsbyOrderId(orderId)
+    for(let i=0; i<result.length;i++){
+        result[i].product = await productRepository.getProductById(result[i].productId);
+    }
     return result
 }
 

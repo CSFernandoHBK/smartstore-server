@@ -11,9 +11,17 @@ async function getFinance(userId: number) {
     return result;
 }
 
+async function getOnlySells(userId: number){
+    const result = await financeRepository.getFinance(userId);
+    result.forEach((a) => {delete a.userId});
+    const filteredArray = result.filter((a) => a.isEntry);
+    return filteredArray; 
+}
+
 const financeService = {
     createFinance,
-    getFinance
+    getFinance,
+    getOnlySells
 }
 
 export default financeService;
