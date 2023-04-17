@@ -1,9 +1,12 @@
-import { imageUpload } from "../controllers/image-controller";
+import { authenticateToken } from "../middlewares";
+import { getImageByProductId, imageUpload } from "../controllers/image-controller";
 import { Router } from "express";
 
 const imageRouter = Router();
 
 imageRouter
-    .post("/upload", imageUpload)
+    .all("/*", authenticateToken)
+    .post("/:productId", imageUpload)
+    .get("/:productId", getImageByProductId)
 
 export {imageRouter}

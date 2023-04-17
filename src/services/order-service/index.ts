@@ -35,6 +35,10 @@ async function createOrder(userId: number, orderInfo: OrderNew){
     return result
 }
 
+async function addProductsForOrder(userId: number, orderId: number, products: number[]) {
+    await orderRepository.addProductsForOrder(userId, orderId, products);
+}
+
 async function updateOrder(){
     
 }
@@ -57,6 +61,7 @@ const orderService = {
     getOrderById,
     getProductsbyOrderId,
     createOrder,
+    addProductsForOrder,
     updateOrder,
     deleteOrder
 };

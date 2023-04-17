@@ -1,4 +1,4 @@
-import { createOrder, deleteOrder, getOrder, getOrderById, updateOrder } from "../controllers/order-controller";
+import { addProductsForOrder, createOrder, deleteOrder, getOrder, getOrderById, updateOrder } from "../controllers/order-controller";
 import { Router } from "express";
 import { authenticateToken } from "../middlewares";
 
@@ -9,6 +9,7 @@ orderRouter
     .get("/", getOrder)
     .get("/:orderId", getOrderById)
     .post("/", createOrder)
+    .post("/:orderId", addProductsForOrder)
     .put("/", updateOrder)
     .delete("/:orderId", deleteOrder)
 

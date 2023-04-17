@@ -57,6 +57,20 @@ export async function createOrder(req: AuthenticatedRequest, res: Response){
     }
 }
 
+export async function addProductsForOrder(req: AuthenticatedRequest, res: Response){
+    const {userId} = req;
+    const orderId = req.params.orderId;
+    const products: number[] = req.body;
+
+    try{
+        const result = await orderService.addProductsForOrder(userId, Number(orderId), products);
+        return res.status(201).send("Created");
+    } catch(err){
+        console.log(err);
+        return res.status(500).send(httpStatus["500_MESSAGE"]) 
+    }
+}
+
 export async function updateOrder(req: AuthenticatedRequest, res: Response){
     const {userId} = req;
 

@@ -4,7 +4,6 @@ import trackingRepository from '../../repositories/tracking-repository';
 
 async function getTracking(code: string[]){
     const resultado = await rastrearEncomendas(code);
-    console.log(resultado[0].eventos)
     return resultado[0].eventos;
 }
 

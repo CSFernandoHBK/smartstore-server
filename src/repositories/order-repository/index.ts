@@ -37,6 +37,19 @@ async function createOrder(userId: number, orderInfo: OrderNew){
     })
 }
 
+async function addProductsForOrder(userId: number, orderId: number, products: number[]) {
+    for(let i=0; i<products.length; i++){
+        await prisma.orderProduct.create({
+            data:{
+                userId: userId,
+                productId: products[i],
+                orderId: orderId,
+                quantity: 1
+            }
+        })
+    }
+}
+
 async function updateOrder(){
     
 }
@@ -55,6 +68,7 @@ const orderRepository = {
     getOrderById,
     getProductsbyOrderId,
     createOrder,
+    addProductsForOrder,
     updateOrder,
     deleteOrder
 };
