@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import httpStatus from "http-status";
 import { loginSchema } from "../schemas";
 import authService from "../services/auth-service";
+import { AuthenticatedRequest } from "middlewares";
 
 export async function signIn(req: Request, res: Response){
     const user: loginInfo = req.body;
@@ -18,11 +19,20 @@ export async function signIn(req: Request, res: Response){
             return res.status(401).send("E-mail not found!")
         }
         const token = await authService.signIn(email, password)
-
-        console.log(token);
-
         return res.send({token: token})
     } catch(err){
+        console.log(err);
+        return res.status(500).send(httpStatus["500_MESSAGE"])   
+    }
+}
+
+export async function signOut(req: AuthenticatedRequest, res: Response){
+    const {userId} = req;
+
+    try{
+        await authService.signOut(userId)
+        return res.sendStatus(204)
+    }catch(err){
         console.log(err);
         return res.status(500).send(httpStatus["500_MESSAGE"])   
     }

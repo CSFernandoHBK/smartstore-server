@@ -35,9 +35,18 @@ async function verifyEmail(email: string){
     })
 }
 
+async function signOut(userId: number){
+    return await prisma.session.delete({
+        where:{
+            userId: userId
+        }
+    })
+}
+
 const authRepository = {
     signIn,
-    verifyEmail
+    verifyEmail,
+    signOut
 };
 
 export default authRepository;

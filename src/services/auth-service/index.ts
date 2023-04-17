@@ -8,9 +8,14 @@ async function verifyEmail(email: string) {
     return await authRepository.verifyEmail(email);
 }
 
+async function signOut(userId: number) {
+    await authRepository.signOut(userId);   
+}
+
 const authService = {
     signIn,
-    verifyEmail
+    verifyEmail,
+    signOut
 };
 
 export default authService;
