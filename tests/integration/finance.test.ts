@@ -3,7 +3,7 @@ import httpStatus from "http-status";
 import supertest from "supertest";
 import * as jwt from "jsonwebtoken";
 import {faker} from "@faker-js/faker";
-import { createUser } from "../factories/user-factory";
+import { createUser, generateValidToken } from "../factories/user-factory";
 import { cleanDb } from "../helpers";
 
 const server = supertest(app);
@@ -33,8 +33,26 @@ describe("POST /finance", () => {
 
 
     describe("when token is valid", () => {
-        it("", async () =>{
+        it("should respond with 400 if body is not sended", async () =>{
+            const user = await createUser();
+            const token = await generateValidToken(user)
+            const response = await server.post("/finance").set("Authorization", `Bearer ${token}`)
+            expect(response.status).toBe(400)
+        })
 
+        it("should respond with 400 if body is invalid", async () =>{
+            const user = await createUser();
+            const token = await generateValidToken(user);
+            const invalidBody = {[faker.lorem.word()]: faker.lorem.word()}
+            const response = await server.post("/finance").set("Authorization", `Bearer ${token}`).send(invalidBody);
+
+            expect(response.status).toBe(400)
+        })
+
+        describe("when body is valid", () => {
+            it("", async () => {
+
+            })
         })
     })
 })

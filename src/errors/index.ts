@@ -35,3 +35,10 @@ export function invalidCredentialsError(): ApplicationError {
     message: "email or password are incorrect",
   };
 }
+
+export function badRequestError(): ApplicationError {
+  return {
+    name: "badRequestError",
+    message: "There is something wrong with your requisition",
+  };
+}
