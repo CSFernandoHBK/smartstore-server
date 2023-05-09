@@ -72,3 +72,7 @@ describe("POST /product", () => {
         })
     })
 })
+
+describe("GET /product", () => {
+
+})
