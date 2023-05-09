@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npx dotenv -e .env.test -- jest --runInBand",
     "dev": "npx dotenv -e .env.development nodemon --delay 1000ms src/server.ts -e ts",
-    "start": "node dist/index.js"
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
