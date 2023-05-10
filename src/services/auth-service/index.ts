@@ -12,10 +12,18 @@ async function signOut(userId: number) {
     await authRepository.signOut(userId);   
 }
 
+async function verifySession(userId: number) {
+    const result = await authRepository.verifySession(userId);
+    if(result){
+        await authRepository.signOut(userId)
+    }
+}
+
 const authService = {
     signIn,
     verifyEmail,
-    signOut
+    signOut,
+    verifySession
 };
 
 export default authService;

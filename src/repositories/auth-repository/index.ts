@@ -43,10 +43,19 @@ async function signOut(userId: number){
     })
 }
 
+async function verifySession(userId: number) {
+    return await prisma.session.findFirst({
+        where:{
+            userId: userId
+        }
+    })
+}
+
 const authRepository = {
     signIn,
     verifyEmail,
-    signOut
+    signOut,
+    verifySession
 };
 
 export default authRepository;

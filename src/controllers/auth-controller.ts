@@ -18,6 +18,7 @@ export async function signIn(req: Request, res: Response){
         if(!emailExists){
             return res.status(401).send("E-mail not found!")
         }
+        await authService.verifySession(emailExists.id)
         const token = await authService.signIn(email, password)
         return res.send({token: token})
     } catch(err){
